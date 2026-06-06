@@ -15,6 +15,8 @@ const { Content } = await render(entry);
 
 const fmt = (d: Date) =>
   d.toLocaleDateString('en-GB', { year: 'numeric', month: 'long' });
+
+const base = import.meta.env.BASE_URL;
 ---
 
 <Layout title={entry.data.title} description={`${entry.data.title} — Your Name`}>
@@ -69,7 +71,7 @@ const fmt = (d: Date) =>
     )}
 
     <div class="proj-back">
-      <a href="/">← All work</a>
+      <a href={base}>← All work</a>
     </div>
 
   </article>

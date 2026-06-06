@@ -6,6 +6,7 @@ interface Props {
 
 const { title = 'Your Name', description = 'Illustrator based in Your City' } = Astro.props;
 const pageTitle = title === 'Your Name' ? title : `${title} — Your Name`;
+const base = import.meta.env.BASE_URL;
 ---
 
 <!doctype html>
@@ -13,8 +14,8 @@ const pageTitle = title === 'Your Name' ? title : `${title} — Your Name`;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" href="/favicon.ico" />
+    <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
+    <link rel="icon" href={`${base}favicon.ico`} />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
     <title>{pageTitle}</title>
@@ -24,11 +25,11 @@ const pageTitle = title === 'Your Name' ? title : `${title} — Your Name`;
   </head>
   <body>
     <header class="navbar">
-      <a href="/" class="navbar-brand">Your Name</a>
+      <a href={base} class="navbar-brand">Your Name</a>
       <nav class="navbar-nav" aria-label="Main navigation">
-        <a href="/">Illustration</a>
-        <a href="/about-me">About</a>
-        <a href="/contact-us">Contact</a>
+        <a href={base}>Illustration</a>
+        <a href={`${base}about-me`}>About</a>
+        <a href={`${base}contact-us`}>Contact</a>
       </nav>
       <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
         <span></span><span></span><span></span>
