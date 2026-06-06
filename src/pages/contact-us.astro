@@ -1,0 +1,117 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Contact" description="Contact — Your Name, Illustrator">
+  <div class="page">
+
+    <div class="page-header">
+      <h1>Contact</h1>
+    </div>
+
+    <div class="contact">
+
+      <div class="contact-intro">
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          Vivamus laoreet orci vitae metus — always happy to discuss
+          new projects, collaborations and commissions.
+        </p>
+      </div>
+
+      <dl class="contact-list">
+        <div class="contact-item">
+          <dt>Email</dt>
+          <dd><a href="mailto:hello@yourname.com">hello@yourname.com</a></dd>
+        </div>
+        <div class="contact-item">
+          <dt>Instagram</dt>
+          <dd><a href="https://instagram.com" target="_blank" rel="noopener">@yourhandle</a></dd>
+        </div>
+        <div class="contact-item">
+          <dt>Based in</dt>
+          <dd>Your City, Country</dd>
+        </div>
+      </dl>
+
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .page {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 0 var(--pad) 7rem;
+    width: 100%;
+  }
+
+  .page-header {
+    padding: 3.5rem 0 2.5rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 3rem;
+  }
+
+  .page-header h1 {
+    font-size: 0.78rem;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--fg);
+  }
+
+  /* ── Contact ── */
+  .contact {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    max-width: 580px;
+  }
+
+  .contact-intro p {
+    font-size: 0.92rem;
+    line-height: 1.95;
+    color: var(--fg);
+    font-weight: 300;
+  }
+
+  /* ── List ── */
+  .contact-list {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid var(--border);
+  }
+
+  .contact-item {
+    display: flex;
+    gap: 2.5rem;
+    align-items: baseline;
+    padding: 1.1rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .contact-item dt {
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    width: 6rem;
+    flex-shrink: 0;
+    font-weight: 400;
+  }
+
+  .contact-item dd {
+    font-size: 0.88rem;
+    font-weight: 300;
+  }
+
+  .contact-item a {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 1px;
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  .contact-item a:hover {
+    border-color: var(--fg);
+  }
+</style>

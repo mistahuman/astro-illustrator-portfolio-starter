@@ -1,0 +1,110 @@
+---
+interface Project {
+  title: string;
+  slug: string;
+  category: string;
+  cover: string;
+}
+
+interface Props {
+  projects: Project[];
+  dataAttr?: boolean;
+}
+
+const { projects, dataAttr = false } = Astro.props;
+---
+
+<ul class="grid" role="list">
+  {projects.map((p) => (
+    <li class="card" data-category={dataAttr ? p.category : undefined}>
+      <a href={`/portfolio/${p.slug}`}>
+        <div class="card-image">
+          <img
+            src={p.cover}
+            alt={p.title}
+            loading="lazy"
+            width="800"
+            height="1000"
+          />
+          <div class="card-overlay">
+            <span class="card-title">{p.title}</span>
+            <span class="card-cat">{p.category}</span>
+          </div>
+        </div>
+      </a>
+    </li>
+  ))}
+</ul>
+
+<style>
+  .grid {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1px;
+    background: var(--color-border);
+  }
+
+  .card {
+    background: var(--color-bg);
+    overflow: hidden;
+  }
+
+  .card a {
+    display: block;
+  }
+
+  .card-image {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 4 / 5;
+  }
+
+  .card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+
+  .card:hover .card-image img {
+    transform: scale(1.04);
+  }
+
+  .card-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    opacity: 0;
+    transition: opacity 0.3s;
+    padding: 1.5rem;
+    text-align: center;
+  }
+
+  .card:hover .card-overlay {
+    opacity: 1;
+  }
+
+  .card-title {
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+  }
+
+  .card-cat {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .card[style*="display: none"] {
+    display: none !important;
+  }
+</style>

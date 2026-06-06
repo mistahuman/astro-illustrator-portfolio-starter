@@ -1,0 +1,185 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title = 'Your Name', description = 'Illustrator based in Your City' } = Astro.props;
+const pageTitle = title === 'Your Name' ? title : `${title} — Your Name`;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
+    <title>{pageTitle}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <header class="navbar">
+      <a href="/" class="navbar-brand">Your Name</a>
+      <nav class="navbar-nav" aria-label="Main navigation">
+        <a href="/">Illustration</a>
+        <a href="/about-me">About</a>
+        <a href="/contact-us">Contact</a>
+      </nav>
+      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </header>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        <span>© {new Date().getFullYear()} Your Name</span>
+        <a href="mailto:hello@yourname.com">hello@yourname.com</a>
+      </div>
+    </footer>
+  </body>
+</html>
+
+<script>
+  const toggle = document.querySelector('.nav-toggle') as HTMLButtonElement;
+  const nav = document.querySelector('.navbar-nav') as HTMLElement;
+  toggle?.addEventListener('click', () => {
+    const open = nav.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', String(open));
+  });
+</script>
+
+<style is:global>
+  :root {
+    --bg: #ffffff;
+    --fg: #111111;
+    --muted: #888888;
+    --border: #e8e8e8;
+    --navbar-h: 54px;
+    --f: 'DM Sans', system-ui, sans-serif;
+    --pad: clamp(1.25rem, 5vw, 4rem);
+    --max: 860px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--f);
+    font-weight: 300;
+    background: var(--bg);
+    color: var(--fg);
+    font-size: 15px;
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  main { flex: 1; padding-top: var(--navbar-h); }
+  a { color: inherit; text-decoration: none; }
+  img { display: block; max-width: 100%; }
+
+  /* ── Navbar ── */
+  .navbar {
+    position: fixed;
+    inset: 0 0 auto 0;
+    height: var(--navbar-h);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 var(--pad);
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    z-index: 200;
+  }
+
+  .navbar-brand {
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+  }
+
+  .navbar-nav {
+    display: flex;
+    gap: 2.25rem;
+  }
+
+  .navbar-nav a {
+    font-size: 0.78rem;
+    font-weight: 300;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    transition: color 0.2s;
+  }
+
+  .navbar-nav a:hover,
+  .navbar-nav a[aria-current="page"] { color: var(--fg); }
+
+  .nav-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 4px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 6px 2px;
+  }
+
+  .nav-toggle span {
+    display: block;
+    width: 20px;
+    height: 1px;
+    background: var(--fg);
+  }
+
+  @media (max-width: 580px) {
+    .nav-toggle { display: flex; }
+    .navbar-nav {
+      display: none;
+      position: fixed;
+      inset: var(--navbar-h) 0 0 0;
+      flex-direction: column;
+      gap: 0;
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+      padding: 1.5rem var(--pad);
+    }
+    .navbar-nav.open { display: flex; }
+    .navbar-nav a {
+      padding: 0.9rem 0;
+      border-bottom: 1px solid var(--border);
+      color: var(--fg);
+      font-size: 0.88rem;
+    }
+  }
+
+  /* ── Footer ── */
+  .footer {
+    border-top: 1px solid var(--border);
+    padding: 1.5rem var(--pad);
+    margin-top: auto;
+  }
+
+  .footer-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.72rem;
+    color: var(--muted);
+    letter-spacing: 0.03em;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .footer-inner a:hover { color: var(--fg); }
+</style>

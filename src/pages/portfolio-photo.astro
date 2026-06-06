@@ -1,0 +1,102 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const all = await getCollection(
+  'projects',
+  ({ data }) => !data.draft && data.category === 'photo',
+);
+const projects = all.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+---
+
+<Layout title="Photo" description="Fotografia — Elisa Lanconelli">
+  <div class="page-head">
+    <h1>Photo</h1>
+  </div>
+
+  <div class="masonry">
+    {projects.map((p) => (
+      <div class="m-item">
+        <a href={`/portfolio/${p.data.slug}`}>
+          <div class="m-img">
+            <img
+              src={p.data.cover}
+              alt={p.data.title}
+              loading="lazy"
+              decoding="async"
+            />
+            <div class="m-over">
+              <span>{p.data.title}</span>
+            </div>
+          </div>
+        </a>
+      </div>
+    ))}
+  </div>
+</Layout>
+
+<style>
+  .page-head {
+    padding: 3.5rem 2rem 2.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .page-head h1 {
+    font-size: 1.4rem;
+    font-weight: 300;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .masonry {
+    columns: 3;
+    column-gap: 4px;
+    padding: 4px 0 6rem;
+    background: var(--border);
+  }
+
+  @media (max-width: 860px) { .masonry { columns: 2; } }
+  @media (max-width: 480px) { .masonry { columns: 1; } }
+
+  .m-item {
+    break-inside: avoid;
+    margin-bottom: 4px;
+    overflow: hidden;
+    background: var(--bg);
+  }
+
+  .m-item a { display: block; }
+
+  .m-img {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .m-img img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .m-item:hover .m-img img { transform: scale(1.05); }
+
+  .m-over {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.48);
+    display: flex;
+    align-items: flex-end;
+    padding: 1.25rem;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .m-item:hover .m-over { opacity: 1; }
+
+  .m-over span {
+    color: #fff;
+    font-size: 0.9rem;
+    letter-spacing: 0.03em;
+  }
+</style>

@@ -1,0 +1,233 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="About" description="About — Illustrator based in Your City">
+  <div class="page">
+
+    <div class="page-header">
+      <h1>About</h1>
+    </div>
+
+    <div class="about">
+
+      <div class="about-contact-top">
+        <a href="mailto:hello@yourname.com">hello@yourname.com</a>
+      </div>
+
+      <div class="about-photo">
+        <img
+          src="https://picsum.photos/seed/portrait42/800/1000"
+          alt="Your Name"
+          loading="eager"
+          decoding="async"
+        />
+      </div>
+
+      <div class="about-bio">
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          Vivamus laoreet orci vitae metus tincidunt, ut dictum nisi
+          consequat. Praesent fringilla ante non justo pharetra, nec
+          faucibus dolor condimentum phasellus gravida.
+        </p>
+        <p>
+          Sed ut perspiciatis, unde omnis iste natus error sit
+          voluptatem accusantium doloremque laudantium, totam rem
+          aperiam eaque ipsa quae ab illo inventore veritatis et quasi
+          architecto beatae vitae dicta sunt explicabo.
+        </p>
+        <p>
+          At vero eos et accusamus et iusto odio dignissimos ducimus,
+          qui blanditiis praesentium voluptatum deleniti atque corrupti
+          quos dolores et quas molestias excepturi sint et obcaecati
+          cupiditate non provident.
+        </p>
+      </div>
+
+      <div class="about-section">
+        <h2>Clients</h2>
+        <p>
+          Lorem ipsum · Dolor Sit · Amet Consectetur · Adipiscing Elit ·
+          Vivamus Laoreet · Orci Vitae · Metus Tincidunt · Ut Dictum ·
+          Nisi Consequat
+        </p>
+      </div>
+
+      <div class="about-section">
+        <h2>Selected exhibitions</h2>
+        <ul class="about-list">
+          <li>
+            <span class="year">2024</span>
+            <span>Lorem ipsum dolor sit amet — Gallery Name, City</span>
+          </li>
+          <li>
+            <span class="year">2023</span>
+            <span>Consectetur adipiscing elit — Festival Name, City</span>
+          </li>
+          <li>
+            <span class="year">2022</span>
+            <span>Vivamus laoreet orci vitae — Museum Name, City</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="about-section">
+        <h2>Awards</h2>
+        <ul class="about-list">
+          <li>
+            <span class="year">2024</span>
+            <span>Lorem Award — Category Name</span>
+          </li>
+          <li>
+            <span class="year">2023</span>
+            <span>Ipsum Prize — Honorable Mention</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="about-social">
+        <a href="https://instagram.com" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .page {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 0 var(--pad) 7rem;
+    width: 100%;
+  }
+
+  .page-header {
+    padding: 3.5rem 0 2.5rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 3rem;
+  }
+
+  .page-header h1 {
+    font-size: 0.78rem;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--fg);
+  }
+
+  /* ── About layout ── */
+  .about {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  /* ── Email top ── */
+  .about-contact-top {
+    font-size: 0.82rem;
+    color: var(--muted);
+    margin-bottom: 2.5rem;
+  }
+
+  .about-contact-top a:hover { color: var(--fg); }
+
+  /* ── Photo ── */
+  .about-photo {
+    margin-bottom: 2.5rem;
+    overflow: hidden;
+    max-width: 360px;
+  }
+
+  .about-photo img {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    object-position: top;
+    display: block;
+  }
+
+  /* ── Bio ── */
+  .about-bio {
+    max-width: 580px;
+    margin-bottom: 3rem;
+  }
+
+  .about-bio p {
+    font-size: 0.92rem;
+    line-height: 1.95;
+    color: var(--fg);
+    margin-bottom: 1.1em;
+    font-weight: 300;
+  }
+
+  /* ── Sections ── */
+  .about-section {
+    padding: 2rem 0;
+    border-top: 1px solid var(--border);
+    max-width: 620px;
+  }
+
+  .about-section h2 {
+    font-size: 0.72rem;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 1rem;
+  }
+
+  .about-section p {
+    font-size: 0.88rem;
+    line-height: 1.9;
+    color: var(--fg);
+    font-weight: 300;
+  }
+
+  /* ── Lists ── */
+  .about-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .about-list li {
+    display: flex;
+    gap: 1.5rem;
+    font-size: 0.88rem;
+    font-weight: 300;
+    line-height: 1.6;
+  }
+
+  .year {
+    color: var(--muted);
+    flex-shrink: 0;
+    width: 2.5rem;
+  }
+
+  /* ── Social ── */
+  .about-social {
+    display: flex;
+    gap: 1.5rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid var(--border);
+    margin-top: 1rem;
+  }
+
+  .about-social a {
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    border-bottom: 1px solid transparent;
+    padding-bottom: 2px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+
+  .about-social a:hover {
+    color: var(--fg);
+    border-color: var(--fg);
+  }
+</style>
